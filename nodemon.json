@@ -1,0 +1,9 @@
+{
+    "env" : {
+        "MONGO_USER_ADMIN": "admin",
+        "MONGO_PASSWORD_ADMIN": "clLD5uTu7lmT7HZh",
+        "MONGO_USER_MANAGER": "manager",
+        "MONGO_PASSWORD_MANAGER": "yCb4ml7YfrwJK4BW",
+        "MONGO_DB_NAME": "event-management"
+    }
+}
