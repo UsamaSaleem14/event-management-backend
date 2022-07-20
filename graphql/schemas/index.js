@@ -1,6 +1,14 @@
-const { buildSchema } = require('graphql')
+const { buildSchema } = require("graphql")
 
 module.exports = buildSchema(`
+    type Booking {
+        _id: ID!
+        event: Event!
+        user: User!
+        createdAt: String!
+        updatedAt: String!
+    }
+
     type Event {
         _id: ID!
         title: String!
@@ -31,11 +39,15 @@ module.exports = buildSchema(`
 
     type ApiQuery {
         events: [Event!]!
+        users: User
+        bookings: [Booking!]!
     }
 
     type ApiMutation {
         createEvent(eventInput: EventInput): Event
         createUser(userInput: UserInput): User
+        bookEvent(eventId: ID!): Booking!
+        cancelBooking(bookingId: ID!): Event!
     }
 
     schema {
