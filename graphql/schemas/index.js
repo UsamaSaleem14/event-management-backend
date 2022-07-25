@@ -39,7 +39,7 @@ module.exports = buildSchema(`
 
     type ApiQuery {
         events: [Event!]!
-        users: User
+        users: [User!]!
         bookings: [Booking!]!
     }
 
