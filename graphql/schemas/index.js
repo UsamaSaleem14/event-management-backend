@@ -25,11 +25,16 @@ module.exports = buildSchema(`
       createdEvents: [Event!]
     }
 
+    type AuthData {
+        userId: ID!
+        token: String!
+        tokenExpiration: Int!
+    }
+
     input EventInput {
         title: String!
         description: String!
         price: Float!
-        date: String!
     }
 
     input UserInput {
@@ -41,6 +46,7 @@ module.exports = buildSchema(`
         events: [Event!]!
         users: [User!]!
         bookings: [Booking!]!
+        login(email: String!, password: String!): AuthData!
     }
 
     type ApiMutation {
@@ -48,6 +54,7 @@ module.exports = buildSchema(`
         createUser(userInput: UserInput): User
         bookEvent(eventId: ID!): Booking!
         cancelBooking(bookingId: ID!): Event!
+        changePassowrd(email: String!, password: String!): String!
     }
 
     schema {

@@ -18,13 +18,16 @@ module.exports = {
       throw err
     }
   },
-  createEvent: async (args) => {
+  createEvent: async (args, req) => {
+    if (!req.isAuth) {
+      throw new Error("User is not authenticated")
+    }
     const eventModel = new EventModel({
       title: args.eventInput.title,
       description: args.eventInput.description,
       price: +args.eventInput.price,
-      date: todayDate,
-      creator: "62ae10c5f29078e76aa3a6c5",
+      date: todayDate(),
+      creator: req.userId,
     })
 
     let createdEvent
@@ -32,7 +35,7 @@ module.exports = {
       const result = await eventModel.save()
       createdEvent = transformedEvent(result)
 
-      const creator = await UserModel.findById("62ae10c5f29078e76aa3a6c5")
+      const creator = await UserModel.findById(req.userId)
 
       if (!creator) {
         throw new Error("User not found")
