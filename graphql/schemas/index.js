@@ -1,4 +1,4 @@
-const { buildSchema } = require("graphql")
+const { buildSchema } = require('graphql')
 
 module.exports = buildSchema(`
     type Booking {
@@ -35,6 +35,7 @@ module.exports = buildSchema(`
         title: String!
         description: String!
         price: Float!
+        date: String!
     }
 
     input UserInput {
